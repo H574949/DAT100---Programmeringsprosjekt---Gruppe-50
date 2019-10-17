@@ -12,30 +12,52 @@ public class GPSDataConverter {
 	
 	private static int TIME_STARTINDEX = 11; // startindex for tidspunkt i timestr
 
+	
 	public static int toSeconds(String timestr) {
+	
+		//convert time into seconds. 
 		
+		//Brukt substrings for å hente ut tidspunkt.
+		String hour = timestr.substring(11,13);
+		String minutes = timestr.substring(14,16);
+		String sekunder = timestr.substring(17,19);
 		int secs;
-		int hr, min, sec;
+		int hr, min, sec;	
+		
 		
 		// TODO
 		// OPPGAVE - START
+		hr = Integer.parseInt(hour);
+		min = Integer.parseInt(minutes);
+		sec = Integer.parseInt(sekunder);
 		
-		throw new UnsupportedOperationException(TODO.method());
+		secs = (hr*60*60)+(min*60)+sec;
 
 		// OPPGAVE - SLUTT
 		
+		
+		return secs;
+		
 	}
-
+	
 	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
 
 		GPSPoint gpspoint;
 
 		// TODO - START ;
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		//Convert GPSPoint data to int/double/double/double
+		
+		int time = toSeconds(timeStr);
+		double latitude = Double.parseDouble(latitudeStr);
+		double longitude = Double.parseDouble(longitudeStr);
+		double elevation = Double.parseDouble(elevationStr);
+		
+		gpspoint = new GPSPoint(time,latitude,longitude,elevation);
+		
 		// OPPGAVE - SLUTT ;
-	    
+		
+		return gpspoint;
 	}
 	
 }
